@@ -47,10 +47,6 @@
         <div class="col-sm-4 shipping-form">
             <form onsubmit="event.preventDefault(); return processManifest()" id="shippingForm">
                 <div>
-                    <label for="date">Shipping date:</label>
-                    <input type="date" class="form-control" id="date">
-                </div>
-                <div>
                     <label for="originator">Shipping from:</label>
                     <div id="originator">
                         <input type="radio" name="originator" value="INGEST">Ingest Pipeline</input> <br>
@@ -89,45 +85,6 @@
                 </div>
             </form>
         </div>
-        <div class="col-sm-3">
-            <table class="shipping-table">
-                <thead>
-                <tr>
-                    <th>Destination</th>
-                    <th>Duration</th>
-                    <th>Difficulty</th>
-                    <th>Cost</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <th>Gardiner Lake</th>
-                    <td>3 or 5 days</td>
-                    <td>Intermediate</td>
-                    <td>$40/day</td>
-
-                </tr>
-                <tr>
-                    <th>The Hellroaring Plateau</th>
-                    <td>2, 3, or 4 days</td>
-                    <td>Easy</td>
-                    <td>$35/day</td>
-                </tr>
-                <tr>
-                    <th>The Beaten Path</th>
-                    <td>5 or 7 days</td>
-                    <td>Difficult</td>
-                    <td>$45/day</td>
-                </tr>
-                </tbody>
-                <tfoot>
-                <tr>
-                    <td colspan="4">All routes are direct.</td>
-                </tr>
-                </tfoot>
-            </table>
-        </div>
-
     </div>
 </main>
 
