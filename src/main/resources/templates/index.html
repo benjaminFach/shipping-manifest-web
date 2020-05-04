@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous">
+    </script>
+    <script src="js/moment.js"></script>
+    <script src="js/shippingManifest.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          type="text/css"
+          href="css/shipping-manifest.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Secret Corporation's Shipping Manager Homepage</title>
+</head>
+<body>
+
+<main role="main" class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <p class="main-header"><img src="images/shipping-manifest-header.jpg" alt="Mountain peaks in the wilderness" class="main-header-image"></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <p class="main-header">Secret Corporation's Shipping Manager</p>
+            <p class="slogan">Engineered to create and track shipments seamlessly</p>
+        </div>
+    </div>
+    <div class="row mb-3 mt-5">
+        <div class="col">
+            <p class="section-header">Create a new shipping manifest</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-2">
+        </div>
+
+        <div class="col-sm-4 shipping-form">
+            <form onsubmit="event.preventDefault(); return processManifest()" id="shippingForm">
+                <div>
+                    <label for="date">Shipping date:</label>
+                    <input type="date" class="form-control" id="date">
+                </div>
+                <div>
+                    <label for="originator">Shipping from:</label>
+                    <div id="originator">
+                        <input type="radio" name="originator" value="INGEST">Ingest Pipeline</input> <br>
+                        <input type="radio" name="originator" value="COMPLIANCE">Compliance and Validation</input> <br>
+                        <input type="radio" name="originator" value="EXTRACTOR">Feature Extractor</input>
+                    </div>
+                </div>
+                <div>
+                    <label for="destination">Destination:</label>
+                    <div id="destination">
+                        <input type="radio" name="destination" value="COMPLIANCE">Compliance and Validation</input> <br>
+                        <input type="radio" name="destination" value="EXTRACTOR">Feature Extractor</input> <br>
+                        <input type="radio" name="originator" value="DATABASE">Database Ingest</input> <br>
+                        <input type="radio" name="originator" value="MATCHER">Pattern Matcher</input>
+                    </div>
+                </div>
+                <div>
+                    <label for="priority">Priority:</label>
+                    <input type="number" class="form-control" id="priority">
+                </div>
+                <div>
+                    <label for="type">Type:</label>
+                    <div id="Type">
+                        <input type="radio" name="type" value="CSV">CSV</input> <br>
+                        <input type="radio" name="type" value="FF">FF</input> <br>
+                    </div>
+                </div>
+
+                <div class="shipping-form-buttons">
+                    <button type="reset" class="btn btn-warning">Reset</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                <div class="results" id="quoteResult">
+
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-3">
+            <table class="shipping-table">
+                <thead>
+                <tr>
+                    <th>Destination</th>
+                    <th>Duration</th>
+                    <th>Difficulty</th>
+                    <th>Cost</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>Gardiner Lake</th>
+                    <td>3 or 5 days</td>
+                    <td>Intermediate</td>
+                    <td>$40/day</td>
+
+                </tr>
+                <tr>
+                    <th>The Hellroaring Plateau</th>
+                    <td>2, 3, or 4 days</td>
+                    <td>Easy</td>
+                    <td>$35/day</td>
+                </tr>
+                <tr>
+                    <th>The Beaten Path</th>
+                    <td>5 or 7 days</td>
+                    <td>Difficult</td>
+                    <td>$45/day</td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="4">All routes are direct.</td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="container">
+    <span class="text-muted">For more information, check out the
+        <a href="http://www.wilderness.net/index.cfm?fuse=NWPS&sec=wildView&WID=1">wilderness website</a>
+        for more information about the surrounding area.</span>
+    </div>
+</footer>
+</body>
+</html>
