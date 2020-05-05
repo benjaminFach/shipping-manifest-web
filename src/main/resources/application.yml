@@ -4,11 +4,7 @@ server:
 #TODO: figure out why I need this here and in bootstrap.yml
 spring:
   application:
-    name: testLatticeApp
-  mvc:
-    view:
-      prefix: /WEB-INF/jsp/
-      suffix: .jsp
+    name: shipping-manager
 
 ribbon:
   ServerListRefreshInterval: 1000
