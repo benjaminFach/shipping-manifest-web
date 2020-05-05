@@ -3,12 +3,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.springframework</groupId>
-    <artifactId>gs-spring-boot-docker</artifactId>
-    <version>0.1.0</version>
+    <groupId>org.secretcorporation</groupId>
+    <artifactId>shipping-manifest-manager-ui</artifactId>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>Spring Boot Docker</name>
-    <description>Getting started with Spring Boot and Docker</description>
+    <name>Shipping Manifest Manager</name>
+    <description>UI for creating shipping manifest</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
