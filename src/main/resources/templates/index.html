@@ -47,32 +47,32 @@
         <div class="col-sm-4 shipping-form">
             <form onsubmit="event.preventDefault(); return processManifest()" id="shippingForm">
                 <div>
-                    <label for="originator">Shipping from:</label>
-                    <div id="originator">
-                        <input type="radio" name="originator" value="INGEST">Ingest Pipeline</input> <br>
-                        <input type="radio" name="originator" value="COMPLIANCE">Compliance and Validation</input> <br>
-                        <input type="radio" name="originator" value="EXTRACTOR">Feature Extractor</input>
-                    </div>
+                    <label for="originator">Shipping from:</label><br>
+                    <select id="originator">
+                        <option value="INGEST">Ingest Pipeline</option>
+                        <option value="COMPLIANCE">Compliance and Validation</option>
+                        <option value="EXTRACTOR">Feature Extractor</option>
+                    </select>
                 </div>
                 <div>
-                    <label for="destination">Destination:</label>
-                    <div id="destination">
-                        <input type="radio" name="destination" value="COMPLIANCE">Compliance and Validation</input> <br>
-                        <input type="radio" name="destination" value="EXTRACTOR">Feature Extractor</input> <br>
-                        <input type="radio" name="originator" value="DATABASE">Database Ingest</input> <br>
-                        <input type="radio" name="originator" value="MATCHER">Pattern Matcher</input>
-                    </div>
+                    <label for="destination">Destination:</label><br>
+                    <select id="destination">
+                        <option value="COMPLIANCE">Compliance and Validation</option>
+                        <option value="EXTRACTOR">Feature Extractor</option>
+                        <option value="DATABASE">Database Ingest</option>
+                        <option value="MATCHER">Pattern Matcher</option>
+                    </select>
                 </div>
                 <div>
                     <label for="priority">Priority:</label>
                     <input type="number" class="form-control" id="priority">
                 </div>
                 <div>
-                    <label for="type">Type:</label>
-                    <div id="Type">
-                        <input type="radio" name="type" value="CSV">CSV</input> <br>
-                        <input type="radio" name="type" value="FF">FF</input> <br>
-                    </div>
+                    <label for="type">Type:</label><br>
+                    <select id="type">
+                        <option value="CSV">CSV</option>
+                        <option value="FF">FF</option>
+                    </select>
                 </div>
 
                 <div class="shipping-form-buttons">
@@ -80,7 +80,7 @@
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
 
-                <div class="results" id="quoteResult">
+                <div class="results" id="manifestResult">
 
                 </div>
             </form>

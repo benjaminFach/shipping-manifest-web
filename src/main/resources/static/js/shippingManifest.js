@@ -20,10 +20,10 @@ function processManifest() {
     errorMessages = Array();
 
     // grab values from form
-    var priority = $('#people').val();
-    val destination = $('#destination').val();
-    val originator = $('#originator').val();
-    val type = $('#type').val();
+    var priority = $('#priority').val();
+    var destination = $('#destination').val();
+    var originator = $('#originator').val();
+    var type = $('#type').val();
 
     // validate each field that requires validation
     var isValidPriority = validatePriority(priority);
@@ -65,8 +65,8 @@ function validatePriority(priority) {
     }
 
     // ensure priority is below or equal to maximum
-    if (numPeople > MAX_PRIORITY) {
-        errorMessages.push("Priority must be a positive non-zero integer that's at least 5.");
+    if (priority > MAX_PRIORITY) {
+        errorMessages.push("Priority must be a positive non-zero integer that's at most 5.");
         return false;
     }
 
@@ -74,11 +74,12 @@ function validatePriority(priority) {
 }
 
 function showResults(destination, originator, priority, type) {
-    // submit the request to service mesh
+    // submit the request to manifest endpoint
+    payload = generateJsonPayload(destination, originator, priority, type)
     $.ajax({
         type: "post",
-        url: generateRequestUrl(destination, originator, priority, type),
-        data: "",
+        url: "http://localhost:8080/createManifest",
+        data: payload,
         success: function (data) {
             console.log("Submission was successful.");
             console.log(data);
@@ -86,25 +87,25 @@ function showResults(destination, originator, priority, type) {
         },
         error: function (data) {
             console.log("Something went wrong.");
+            console.log(data)
+            console.log(payload);
             $("#manifestResult").html("");
         },
     });
 
 }
 
-function generateRequestUrl(hike, date, duration, numPeople) {
-    date = moment(date, "YYYY-MM-DD");
+function generateJsonPayload(destination, originator, priority, type) {
+    var jsonData = {};
 
-    //TODO update to send as Rabbit message
-    var requestUrl = "https://web6.jhuep.com/fach_hw8/beartoothQuotingWizard";
-    requestUrl = requestUrl + ("?trail=" + hike);
+    // default date to now as milliseconds since epoch time
+    var now = moment().valueOf();
 
-    // month is zero indexed in moment
-    requestUrl = requestUrl + ("&month=" + (date.month() + 1));
-    requestUrl = requestUrl + ("&day=" + date.date());
-    requestUrl = requestUrl + ("&year=" + date.year());
-    requestUrl = requestUrl + ("&duration=" + duration);
-    requestUrl = requestUrl + ("&numPeople=" + numPeople);
+    jsonData["manifestCreateTime"] = now;
+    jsonData["destination"] = destination;
+    jsonData["originator"] = originator;
+    jsonData["priority"] = priority;
+    jsonData["type"] = type;
 
-    return requestUrl;
+    return jsonData
 }
