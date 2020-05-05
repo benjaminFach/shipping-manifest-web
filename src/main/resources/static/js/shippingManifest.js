@@ -76,7 +76,7 @@ function showResults(destination, originator, priority, type) {
     payload = generateJsonPayload(destination, originator, priority, type)
     $.ajax({
         type: "post",
-        url: "http://localhost:8080/manifest/create",
+        url: "http://localhost:8091/manifest/create",
         data: payload,
         success: function (data) {
             console.log("Submission was successful.");
