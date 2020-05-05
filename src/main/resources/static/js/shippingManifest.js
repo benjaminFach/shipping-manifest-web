@@ -9,7 +9,6 @@ var MAX_PRIORITY = 5;
 // global variable to build error message, so all errors are presented to user after submission.
 var errorMessages = Array();
 
-
 /*
  * Validates information from user requesting shipment.
  * Should be called on form submission before posting to next microservice.
@@ -34,7 +33,6 @@ function processManifest() {
         $("#manifestResult").html("");
         return false;
     }
-
     showResults(destination, originator, priority, type);
 
     return false;
@@ -78,7 +76,7 @@ function showResults(destination, originator, priority, type) {
     payload = generateJsonPayload(destination, originator, priority, type)
     $.ajax({
         type: "post",
-        url: "http://localhost:8080/createManifest",
+        url: "http://localhost:8080/manifest/create",
         data: payload,
         success: function (data) {
             console.log("Submission was successful.");
@@ -101,7 +99,7 @@ function generateJsonPayload(destination, originator, priority, type) {
     // default date to now as milliseconds since epoch time
     var now = moment().valueOf();
 
-    jsonData["manifestCreateTime"] = now;
+    jsonData["timeCreated"] = now;
     jsonData["destination"] = destination;
     jsonData["originator"] = originator;
     jsonData["priority"] = priority;
