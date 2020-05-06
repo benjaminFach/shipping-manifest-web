@@ -77,7 +77,8 @@ function showResults(destination, originator, priority, type) {
     $.ajax({
         type: "post",
         url: "http://localhost:8091/manifest/create",
-        data: payload,
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(payload),
         success: function (data) {
             console.log("Submission was successful.");
             console.log(data);
