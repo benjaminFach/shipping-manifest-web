@@ -142,7 +142,7 @@ function processManifestLineItems() {
 }
 
 $(document).ready(function() {
-    var max_fields = 10;
+    var max_fields = 5;
     var wrapper = $("#manifest-line-items");
     var add_button = $(".add_form_field");
 
