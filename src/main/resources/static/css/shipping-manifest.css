@@ -55,17 +55,33 @@ body {
     text-align: center;
 }
 
-.shipping-form {
+.shipping-form, .line-item-form {
     padding: 25px 25px 25px 25px;
     border: solid 1px grey;
 }
 
-.shipping-form label{
+.shipping-form label, .line-item-form label{
     font-weight: bold;
     padding: 5px 0px 0px 0px;
 }
 
 .shipping-form-buttons {
+    float: right;
+    padding: 5px 0px 0px 0px;
+}
+
+#manifest-line-items {
+    display: none;
+}
+
+.line-item-form-buttons {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+    padding: 5px 0px 0px 0px;
+}
+
+.add_form_field, .delete {
     float: right;
     padding: 5px 0px 0px 0px;
 }

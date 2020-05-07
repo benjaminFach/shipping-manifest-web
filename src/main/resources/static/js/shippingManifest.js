@@ -9,6 +9,9 @@ var MAX_PRIORITY = 5;
 // global variable to build error message, so all errors are presented to user after submission.
 var errorMessages = Array();
 
+// store manifest ID when ReST service returns is after first submission
+var manifestId = 0
+
 /*
  * Validates information from user requesting shipment.
  * Should be called on form submission before posting to next microservice.
@@ -82,13 +85,18 @@ function showResults(destination, originator, priority, type) {
         success: function (data) {
             console.log("Submission was successful.");
             console.log(data);
-            $("#manifestResult").html("<label>" + data + "</label>");
+            $('#manifest-line-items').fadeIn(2000);
+            var parsedData = JSON.parse(data);
+            manifestId = parsedData.id;
+            console.log(manifestId);
+            $(".shipping-form-buttons").remove();
+
         },
         error: function (data) {
             console.log("Something went wrong.");
             console.log(data)
             console.log(payload);
-            $("#manifestResult").html("");
+            $("#manifestResult").html("<p><b>Sorry there was a problem with your submission, please try again later</b></p>");
         },
     });
 
@@ -108,3 +116,50 @@ function generateJsonPayload(destination, originator, priority, type) {
 
     return jsonData
 }
+
+/** Line items **/
+
+/*
+ * Validates information from user requesting shipment line items.
+ * Should be called on form submission before posting to next microservice.
+ * Displays error message and does not post if invalid input is detected.
+ */
+function processManifestLineItems() {
+    // clear the error message queue
+    errorMessages = Array();
+
+    // grab values from form
+    var lineItems = [];
+    $("input[name='line-item[]']").each(function() {
+        lineItem = {}
+        lineItem["itemName"] = $(this).val()
+        lineItem["manifestId"] = manifestId;
+        lineItems.push(lineItem);
+    });
+    console.log(lineItems)
+
+    return false;
+}
+
+$(document).ready(function() {
+    var max_fields = 10;
+    var wrapper = $("#manifest-line-items");
+    var add_button = $(".add_form_field");
+
+    var x = 1;
+    $(add_button).click(function(e) {
+        e.preventDefault();
+        if (x < max_fields) {
+            x++;
+            $(wrapper).append('<div><input type="text" name="line-item[]"/><button class="btn btn-danger delete">Delete Line Item</button></div>'); //add input box
+        } else {
+            alert('You Reached the limits')
+        }
+    });
+
+    $(wrapper).on("click", ".delete", function(e) {
+        e.preventDefault();
+        $(this).parent('div').remove();
+        x--;
+    })
+});

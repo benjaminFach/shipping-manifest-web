@@ -44,7 +44,7 @@
         <div class="col-sm-2">
         </div>
 
-        <div class="col-sm-4 shipping-form">
+        <div class="col-sm-4 shipping-form" id="manifest-entry-form">
             <form onsubmit="event.preventDefault(); return processManifest()" id="shippingForm">
                 <div>
                     <label for="originator">Shipping from:</label><br>
@@ -81,6 +81,25 @@
                 </div>
 
                 <div class="results" id="manifestResult">
+
+                </div>
+            </form>
+        </div>
+
+        <div class="col-sm-4 line-item-form" id="manifest-line-items">
+            <form onsubmit="event.preventDefault(); return processManifestLineItems()" id="lineItemsForm">
+                <button class="btn add_form_field">Add Line Item</button>
+                <div>
+                    <div><input type="text" name="line-item[]"></div>
+                </div>
+
+                <div class="line-item-form-buttons">
+
+                    <button type="reset" class="btn btn-warning">Reset</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+                <div class="results" id="manifestLineItemsResult">
 
                 </div>
             </form>
