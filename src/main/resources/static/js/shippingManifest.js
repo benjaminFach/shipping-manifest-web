@@ -129,16 +129,35 @@ function processManifestLineItems() {
     errorMessages = Array();
 
     // grab values from form
-    var lineItems = [];
     $("input[name='line-item[]']").each(function() {
         lineItem = {}
         lineItem["itemName"] = $(this).val()
         lineItem["manifestId"] = manifestId;
-        lineItems.push(lineItem);
+        saveLineItem(lineItem)
     });
-    console.log(lineItems)
+    console.log(lineItem)
 
     return false;
+}
+
+function saveLineItem(lineItem) {
+// submit the request to manifest endpoint
+    $.ajax({
+        type: "post",
+        url: "http://localhost:8091/manifestLineItem/create",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify(lineItem),
+        success: function (data) {
+            console.log("Submission was successful.");
+            console.log(data);
+
+        },
+        error: function (data) {
+            console.log("Something went wrong.");
+            console.log(data)
+            console.log(payload);
+        },
+    });
 }
 
 $(document).ready(function() {
